@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Astav Technologies | Next-Gen Cloud & IT Solutions</title>
+  <!-- Google Fonts + Font Awesome 6 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Swiper.js CSS (dynamic carousel) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fbfdff;
+      color: #0a2540;
+      overflow-x: hidden;
+    }
+
+    /* BLUE & WHITE AESTHETIC THEME */
+    :root {
+      --primary-deep: #0a3a6b;
+      --primary-vibrant: #1e6bc7;
+      --primary-soft: #3b82f6;
+      --blue-glow: #eef4ff;
+      --pure-white: #ffffff;
+      --off-white: #fafcff;
+      --gray-soft: #eef2f9;
+      --border-light: #e2edff;
+      --text-dark: #0a2b44;
+      --text-mute: #4a627a;
+      --shadow-sm: 0 20px 35px -12px rgba(0, 20, 50, 0.08);
+      --shadow-hover: 0 30px 45px -15px rgba(30,107,199,0.2);
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--primary-deep), var(--primary-vibrant));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .section-subhead {
+      font-size: 1.2rem;
+      color: var(--text-mute);
+      max-width: 680px;
+      margin-bottom: 48px;
+      font-weight: 400;
+    }
+
+    /* NEAT THEMED BUTTONS */
+    .btn-primary {
+      background: var(--primary-vibrant);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(30,107,199,0.25);
+    }
+    .btn-primary:hover {
+      background: var(--primary-deep);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px -8px rgba(30,107,199,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary-vibrant);
+      color: var(--primary-vibrant);
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-weight: 700;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .btn-outline:hover {
+      background: var(--primary-vibrant);
+      color: white;
+      border-color: var(--primary-vibrant);
+    }
+
+    /* NAVIGATION - sleek */
+    .navbar {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-light);
+    }
+    .nav-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 18px 40px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(125deg, #0a3a6b, #1e6bc7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-mute);
+      letter-spacing: 0.8px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+    }
+    .nav-btn {
+      background: transparent;
+      border: none;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 10px 24px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: var(--text-dark);
+      font-family: inherit;
+    }
+    .nav-btn i {
+      margin-right: 8px;
+    }
+    .nav-btn.active, .nav-btn:hover {
+      background: var(--primary-vibrant);
+      color: white;
+      box-shadow: 0 6px 14px rgba(30,107,199,0.2);
+    }
+
+    /* PAGE ANIMATION */
+    .page {
+      display: none;
+      animation: fadeSlide 0.45s ease-out;
+    }
+    .page.active-page {
+      display: block;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(18px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #ffffff 0%, #ecf5fe 100%);
+      border-radius: 0 0 64px 64px;
+      padding: 20px 0 40px;
+    }
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    .hero-text h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--primary-deep);
+    }
+    .hero-badge {
+      background: var(--blue-glow);
+      color: var(--primary-vibrant);
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin-bottom: 24px;
+    }
+
+    /* CLIENTS MARQUEE (dynamic, top clients showcase) */
+    .clients-marquee-section {
+      background: var(--pure-white);
+      padding: 40px 0;
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+      margin: 20px 0;
+    }
+    .marquee-title {
+      text-align: center;
+      font-weight: 700;
+      color: var(--primary-deep);
+      margin-bottom: 30px;
+      font-size: 1.5rem;
+    }
+    .marquee-title i {
+      color: var(--primary-vibrant);
+      margin-right: 8px;
+    }
+    .marquee-wrapper {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+      width: 100%;
+      mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+    }
+    .marquee-track-clients {
+      display: inline-flex;
+      gap: 70px;
+      animation: scrollClients 32s linear infinite;
+    }
+    .client-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--off-white);
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-weight: 600;
+      color: var(--primary-deep);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      border: 1px solid var(--border-light);
+      font-size: 1rem;
+    }
+    .client-item i {
+      font-size: 1.6rem;
+      color: var(--primary-vibrant);
+    }
+    @keyframes scrollClients {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* SERVICE CARDS - elevated */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 35px;
+    }
+    .service-card {
+      background: var(--pure-white);
+      border-radius: 32px;
+      padding: 32px 28px;
+      transition: all 0.35s;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--primary-soft);
+      box-shadow: var(--shadow-hover);
+    }
+    .service-icon {
+      background: var(--blue-glow);
+      width: 70px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 24px;
+      margin-bottom: 28px;
+      font-size: 32px;
+      color: var(--primary-vibrant);
+    }
+
+    /* CAROUSEL - dynamic & moving (testimonials) */
+    .carousel-section {
+      background: linear-gradient(120deg, #f3f9ff, #ffffff);
+      border-radius: 60px;
+      margin: 40px 0;
+    }
+    .swiper {
+      width: 100%;
+      padding: 30px 0 60px;
+    }
+    .swiper-slide {
+      background: white;
+      border-radius: 40px;
+      padding: 40px 28px;
+      text-align: center;
+      box-shadow: 0 25px 45px -15px rgba(0,0,0,0.08);
+      border: 1px solid rgba(30,107,199,0.2);
+      transition: 0.2s;
+    }
+    .swiper-slide i {
+      font-size: 48px;
+      color: var(--primary-vibrant);
+      margin-bottom: 20px;
+    }
+    .swiper-pagination-bullet-active {
+      background: var(--primary-vibrant) !important;
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: var(--primary-vibrant);
+    }
+
+    /* contact form */
+    .contact-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 55px;
+      background: var(--pure-white);
+      border-radius: 48px;
+      padding: 52px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 16px 22px;
+      border-radius: 44px;
+      border: 1px solid var(--border-light);
+      font-family: inherit;
+      background: #ffffff;
+      transition: 0.2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary-vibrant);
+      box-shadow: 0 0 0 4px rgba(30,107,199,0.1);
+    }
+    footer {
+      background: #0a2b44;
+      color: #bfd9ff;
+      padding: 56px 0 28px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 800px) {
+      .container { padding: 0 24px; }
+      .hero-text h1 { font-size: 2.2rem; }
+      .nav-flex { flex-direction: column; gap: 16px; }
+      .contact-flex { padding: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION (multi-page) -->
+<div class="navbar">
+  <div class="nav-flex">
+    <div class="logo">
+      <h1>Astav Technologies</h1>
+      <span>Pvt. Ltd. | Infinite Innovation</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn active" data-page="home"><i class="fas fa-digital-tiling"></i> Home</button>
+      <button class="nav-btn" data-page="services"><i class="fas fa-cubes"></i> Services</button>
+      <button class="nav-btn" data-page="contact"><i class="fas fa-message"></i> Contact</button>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- ==================== HOME PAGE ==================== -->
+  <div id="home-page" class="page active-page">
+    <div class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="hero-badge"><i class="fas fa-cloud-arrow-up"></i> India's #1 Cloud Partner</div>
+          <h1>Secure Cloud Hosting & Intelligent IT Support</h1>
+          <p style="font-size: 1.2rem; margin: 20px 0; color: #2c4f6e;">Scalable infrastructure, 24/7 monitoring, and AI-driven operations — trusted by 500+ enterprises.</p>
+          <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 24px;">
+            <button class="btn-primary" id="heroExploreBtn"><i class="fas fa-sparkles"></i> Explore Solutions</button>
+            <button class="btn-outline" id="heroContactBtn"><i class="fas fa-calendar-check"></i> Free Consultation</button>
+          </div>
+          <div style="display: flex; gap: 35px; margin-top: 48px;">
+            <div><strong style="font-size: 2rem; color: var(--primary-vibrant);">99.99%</strong><br>Uptime SLA</div>
+            <div><strong style="font-size: 2rem; color: var(--primary-vibrant);">24/7</strong><br>Expert Support</div>
+            <div><strong style="font-size: 2rem; color: var(--primary-vibrant);">500+</strong><br>Happy Clients</div>
+          </div>
+        </div>
+        <div style="flex:1; text-align: center;">
+          <i class="fas fa-chalkboard-user" style="font-size: 200px; color: #d4e4ff;"></i>
+          <i class="fas fa-network-wired" style="font-size: 150px; color: var(--primary-soft); margin-left: -30px;"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOP CLIENTS MARQUEE (dynamic, moving) - exactly what you asked -->
+    <div class="clients-marquee-section">
+      <div class="container">
+        <div class="marquee-title"><i class="fas fa-handshake"></i> Trusted by Industry Leaders & Top Clients</div>
+        <div class="marquee-wrapper">
+          <div class="marquee-track-clients">
+            <div class="client-item"><i class="fab fa-amazon"></i> Amazon India</div>
+            <div class="client-item"><i class="fas fa-chart-line"></i> ICICI Bank</div>
+            <div class="client-item"><i class="fas fa-cubes"></i> Tata Steel</div>
+            <div class="client-item"><i class="fas fa-chart-pie"></i> Deloitte</div>
+            <div class="client-item"><i class="fas fa-cloud"></i> Razorpay</div>
+            <div class="client-item"><i class="fas fa-building"></i> Aditya Birla</div>
+            <div class="client-item"><i class="fab fa-microsoft"></i> Microsoft Partner</div>
+            <div class="client-item"><i class="fas fa-chart-simple"></i> Infosys</div>
+            <!-- duplicate for seamless loop -->
+            <div class="client-item"><i class="fab fa-amazon"></i> Amazon India</div>
+            <div class="client-item"><i class="fas fa-chart-line"></i> ICICI Bank</div>
+            <div class="client-item"><i class="fas fa-cubes"></i> Tata Steel</div>
+            <div class="client-item"><i class="fas fa-chart-pie"></i> Deloitte</div>
+            <div class="client-item"><i class="fas fa-cloud"></i> Razorpay</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Offerings -->
+    <div class="container">
+      <section>
+        <h2>Powerful IT Solutions</h2>
+        <div class="section-subhead">Future-ready infrastructure, cybersecurity, and 24x7 support to accelerate growth.</div>
+        <div class="cards-grid">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-cloud-upload-alt"></i></div><h3>Elastic Cloud Hosting</h3><p>Secure, scalable cloud for accounting, ERP & business apps with auto-scaling.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-shield-hooded"></i></div><h3>Next-Gen Cybersecurity</h3><p>Threat hunting, SOC, and advanced DLP to protect your digital assets.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-headset"></i></div><h3>Always-On Support</h3><p>AI-powered ticketing + L3 engineers. Average resolution < 25 mins.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-gauge-high"></i></div><h3>Performance Tuning</h3><p>Optimize Books Keeping, SAP, and databases for blazing speed.</p></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- DYNAMIC CAROUSEL (moving, not stagnant) -->
+    <div class="carousel-section container" style="margin-bottom: 50px;">
+      <h2 style="padding-left: 20px; padding-top: 30px;">Success Stories & Testimonials</h2>
+      <div class="swiper main-carousel">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><i class="fas fa-quote-left"></i><h4>“Incredible Cloud Migration”</h4><p>Astav moved our entire Books keeping environment to cloud in 2 days. Uptime is stellar!</p><strong>— Meera Shah, CFO at Lumina Retail</strong></div>
+          <div class="swiper-slide"><i class="fas fa-quote-left"></i><h4>“Security-first approach”</h4><p>Their proactive threat detection saved us from a ransomware attempt. Highly recommend.</p><strong>— Rajiv Menon, CTO at NexGen Labs</strong></div>
+          <div class="swiper-slide"><i class="fas fa-quote-left"></i><h4>“24/7 support is a game changer”</h4><p>We get instant assistance at midnight. True partnership beyond expectations.</p><strong>— Sneha Agarwal, Founder at Finova</strong></div>
+          <div class="swiper-slide"><i class="fas fa-quote-left"></i><h4>“Performance boost +40%”</h4><p>Database optimization improved our ERP speed dramatically. Astav rocks!</p><strong>— Ankit Sharma, Operations Head</strong></div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SERVICES PAGE ==================== -->
+  <div id="services-page" class="page">
+    <div class="container">
+      <section style="padding-top: 40px;">
+        <h2>Precision Services for Modern Business</h2>
+        <div class="section-subhead">End-to-end IT solutions — from cloud infrastructure to managed support.</div>
+        <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(310px,1fr));">
+          <div class="service-card"><div class="service-icon"><i class="fas fa-database"></i></div><h3>Book Keeping & Tax Filing</h3><p>Multi-user access, bank-grade encryption, and 24/7 availability.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-recycle"></i></div><h3>Cloud Hosting</h3><p>Automated backups, instant failover, and ransomware protection.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-network-wired"></i></div><h3>Infrastructure Management</h3><p>Complete server, network, and cloud monitoring with predictive analytics.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-chart-line"></i></div><h3>Application Modernization</h3><p>Legacy to cloud-native transformation + performance engineering.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-user-shield"></i></div><h3>Zero Trust Security</h3><p>Identity management, MFA, and endpoint protection.</p></div>
+          <div class="service-card"><div class="service-icon"><i class="fas fa-chart-simple"></i></div><h3>Data Analytics & AI</h3><p>Actionable insights with business intelligence dashboards.</p></div>
+        </div>
+        <!-- secondary carousel inside services to keep dynamic vibe -->
+        <div style="margin-top: 60px; background: #f0f6fe; border-radius: 52px; padding: 30px 20px;">
+          <h3 style="text-align: center;">Innovation at scale</h3>
+          <div class="swiper service-carousel" style="padding: 20px 0;">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><i class="fas fa-chart-line"></i><p>40% faster financial close</p></div>
+              <div class="swiper-slide"><i class="fas fa-shield"></i><p>Zero security breaches in 2024</p></div>
+              <div class="swiper-slide"><i class="fas fa-globe"></i><p>Global multi-cloud deployments</p></div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ==================== CONTACT PAGE ==================== -->
+  <div id="contact-page" class="page">
+    <div class="container">
+      <section style="padding: 40px 0 70px;">
+        <h2>Start your digital transformation</h2>
+        <div class="section-subhead">Our experts are ready to craft tailor-made IT solutions for you.</div>
+        <div class="contact-flex">
+          <div class="contact-info">
+            <i class="fas fa-building" style="font-size: 32px; color: var(--primary-vibrant);"></i>
+            <h3 style="margin: 18px 0 12px;">Astav Technologies Pvt Ltd.</h3>
+            <p>WeWork, 5th Floor, Embassy Tech Square, Bangalore - 560103, India</p>
+            <div style="margin: 32px 0;"><i class="fas fa-phone-alt"></i> +91 80 4710 2233 <br><i class="fas fa-envelope"></i> hello@astavtech.com</div>
+            <div><i class="fas fa-clock"></i> Mon-Fri: 9AM–9PM IST | Emergency Support: 24/7/365</div>
+            <div style="margin-top: 25px;"><i class="fab fa-linkedin"></i> /astavtech &nbsp;&nbsp;<i class="fab fa-twitter"></i> @astav_tech</div>
+          </div>
+          <div class="contact-form">
+            <form id="contactFormModern">
+              <div class="form-group"><input type="text" placeholder="Full Name *" required></div>
+              <div class="form-group"><input type="email" placeholder="Work Email *" required></div>
+              <div class="form-group"><input type="tel" placeholder="Phone"></div>
+              <div class="form-group"><textarea rows="4" placeholder="Tell us about your IT requirements..."></textarea></div>
+              <button type="submit" class="btn-primary"><i class="fas fa-paper-plane"></i> Send Inquiry</button>
+              <p id="contactFeedback" style="margin-top: 16px; font-weight: 500;"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; align-items: center;">
+      <div><h3 style="color:white;">Astav Technologies Pvt Ltd.</h3><p>Innovation. Security. Resilience.</p></div>
+      <div>© 2025 Astav Technologies | All rights reserved</div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // multi-page navigation
+  const homePage = document.getElementById('home-page');
+  const servicesPage = document.getElementById('services-page');
+  const contactPage = document.getElementById('contact-page');
+  const navBtnsAll = document.querySelectorAll('.nav-btn');
+
+  function setActivePage(pageId) {
+    homePage.classList.remove('active-page');
+    servicesPage.classList.remove('active-page');
+    contactPage.classList.remove('active-page');
+    if (pageId === 'home') homePage.classList.add('active-page');
+    if (pageId === 'services') servicesPage.classList.add('active-page');
+    if (pageId === 'contact') contactPage.classList.add('active-page');
+    navBtnsAll.forEach(btn => {
+      const pageAttr = btn.getAttribute('data-page');
+      if (pageAttr === pageId) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  navBtnsAll.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const page = btn.getAttribute('data-page');
+      setActivePage(page);
+    });
+  });
+
+  document.getElementById('heroExploreBtn')?.addEventListener('click', () => setActivePage('services'));
+  document.getElementById('heroContactBtn')?.addEventListener('click', () => setActivePage('contact'));
+
+  // contact form feedback
+  const contactForm = document.getElementById('contactFormModern');
+  const feedbackSpan = document.getElementById('contactFeedback');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      feedbackSpan.innerHTML = '<i class="fas fa-check-circle"></i> Thank you! Our team will respond within 24 hours.';
+      feedbackSpan.style.color = '#1e6bc7';
+      contactForm.reset();
+      setTimeout(() => { feedbackSpan.innerHTML = ''; }, 5000);
+    });
+  }
+
+  // INITIALIZE ALL CAROUSELS (dynamic and moving, not stagnant)
+  const mainCarousel = new Swiper('.main-carousel', {
+    loop: true,
+    autoplay: { delay: 3200, disableOnInteraction: false, pauseOnMouseEnter: false },
+    speed: 800,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    slidesPerView: 1,
+    breakpoints: { 768: { slidesPerView: 2, spaceBetween: 25 }, 1024: { slidesPerView: 3, spaceBetween: 30 } }
+  });
+
+  const serviceCarousel = new Swiper('.service-carousel', {
+    loop: true,
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true },
+    slidesPerView: 1,
+    breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
+  });
+
+  // additional marquee loop smoothness: clone for infinite
+  const marqueeTrack = document.querySelector('.marquee-track-clients');
+  if (marqueeTrack && marqueeTrack.children.length) {
+    const cloneSet = marqueeTrack.cloneNode(true);
+    marqueeTrack.parentNode.appendChild(cloneSet);
+  }
+</script>
+</body>
+</html>
